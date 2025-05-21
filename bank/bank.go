@@ -13,7 +13,7 @@ func getBalanceFromFile() (float64, error) {
 	data, err := os.ReadFile(accountBalanceFile)
 
 	if err != nil {
-		return 1000, errors.New("Failed to find balance life.")
+		return 1000, errors.New("failed to find balance life")
 	}
 
 	var balanceText string = string(data)
