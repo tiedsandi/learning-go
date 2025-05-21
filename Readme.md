@@ -81,3 +81,7 @@ func main() {
 }
 
 ```
+
+# Formated Print
+
+# Function

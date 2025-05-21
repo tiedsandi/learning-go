@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	var revenue,expensess int
+	var revenue, expensess int
 	var taxRate float64
 
 	fmt.Print("Revenue: ")
@@ -16,7 +16,7 @@ func main() {
 	fmt.Scan(&taxRate)
 
 	ebt := revenue - expensess
-	profit:= float64(ebt) * (1-taxRate/100)
+	profit := float64(ebt) * (1 - taxRate/100)
 	ratio := float64(ebt) / profit
 
 	fmt.Println(ebt)
