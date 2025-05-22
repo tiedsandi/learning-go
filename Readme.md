@@ -7,6 +7,12 @@
 
 "" or `` dont ''
 
+menjalakan file:
+
+```sh
+go run pointers.go
+```
+
 ```sh
 go mod init example.com/first-app
 
