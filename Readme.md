@@ -85,3 +85,10 @@ func main() {
 # Formated Print
 
 # Function
+
+## untuk install third party library
+
+```sh
+go get
+
+```
