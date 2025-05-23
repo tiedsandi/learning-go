@@ -1,42 +1,10 @@
 package main
 
 import (
-	"errors"
 	"fmt"
-	"time"
+
+	"example.com/structs/user"
 )
-
-type user struct {
-	firstName, lastName, birthdate string
-	height                         float64
-	createdAt                      time.Time
-}
-
-func (u user) outputUserDetails() {
-	// fmt.Println(u)
-	fmt.Println(u.firstName, u.lastName, u.birthdate, u.height)
-}
-
-func (u *user) clearUserName(height *float64) {
-	u.firstName = ""
-	u.lastName = ""
-	u.birthdate = ""
-	u.height = *height
-}
-
-func newUser(firstName, lastName, birthdate string) (*user, error) {
-	if firstName == "" || lastName == "" || birthdate == "" {
-		return nil, errors.New("firstname,lastname, and birthdate are required")
-	}
-
-	return &user{
-		firstName: firstName,
-		lastName:  lastName,
-		birthdate: birthdate,
-		createdAt: time.Now(),
-		// height:    userHeight,
-	}, nil
-}
 
 func main() {
 	userFirstName := getUserData("Please enter your first name: ")
@@ -47,7 +15,15 @@ func main() {
 	var userHeight float64
 	fmt.Sscanf(userHeightStr, "%f", &userHeight)
 
-	appUser, err := newUser(userFirstName, userLastName, userBirthdate)
+	// appUser, err := &user.User(userFirstName, userLastName, userBirthdate)
+
+	// var appUser *user.User
+	// appUser = &user.User{
+	// 	FirstName: userFirstName,
+	// }
+
+	var appUser *user.User
+	appUser, err := user.New(userFirstName, userLastName, userBirthdate)
 
 	if err != nil {
 		fmt.Println(err)
@@ -74,9 +50,13 @@ func main() {
 
 	// outputUserDetails(&appUser)
 
-	appUser.outputUserDetails()
-	appUser.clearUserName(&userHeight)
-	appUser.outputUserDetails()
+	appUser.OutputUserDetails()
+	appUser.ClearUserName(&userHeight)
+	appUser.OutputUserDetails()
+
+	// appUser.outputUserDetails()
+	// appUser.clearUserName(&userHeight)
+	// appUser.outputUserDetails()
 }
 
 // func outputUserDetails(u *user) {
