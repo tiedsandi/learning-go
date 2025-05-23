@@ -33,6 +33,8 @@ func main() {
 	printSomething(1.5)
 	printSomething("Hello World!")
 
+	add(1, 2)
+
 	title, content := getNoteData()
 	todoText := getTodoData()
 
@@ -66,16 +68,52 @@ func main() {
 }
 
 func printSomething(value interface{}) {
-	fmt.Println(value)
+	intVal, ok := value.(int)
 
-	switch v := value.(type) {
-	case int:
-		fmt.Println("Ini integer:", v)
-	case string:
-		fmt.Println("Ini string:", v)
-	default:
-		fmt.Println("Tipe lain:", v)
+	if ok {
+		fmt.Println(intVal + 1)
 	}
+
+	floatVal, ok := value.(float64)
+
+	if ok {
+		fmt.Println(floatVal + 1)
+	}
+
+	stringVal, ok := value.(string)
+
+	if ok {
+		fmt.Println(stringVal)
+	}
+
+	// fmt.Println(value)
+
+	// switch v := value.(type) {
+	// case int:
+	// 	fmt.Println("Ini integer:", v)
+	// case string:
+	// 	fmt.Println("Ini string:", v)
+	// default:
+	// 	fmt.Println("Tipe lain:", v)
+	// }
+}
+
+func add(a, b interface{}) interface{} {
+	aInt, aIsInt := a.(int)
+	bInt, bIsInt := b.(int)
+
+	if aIsInt && bIsInt {
+		return aInt + bInt
+	}
+
+	aFloat, aIsFloat := a.(float64)
+	bFloat, bIsFloat := b.(float64)
+
+	if aIsFloat && bIsFloat {
+		return aFloat + bFloat
+	}
+
+	return nil
 }
 
 func outputData(data outputtable) error {
