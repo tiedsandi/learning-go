@@ -29,6 +29,10 @@ type outputtable interface {
 // }
 
 func main() {
+	printSomething(1)
+	printSomething(1.5)
+	printSomething("Hello World!")
+
 	title, content := getNoteData()
 	todoText := getTodoData()
 
@@ -52,10 +56,25 @@ func main() {
 		return
 	}
 
+	printSomething(todo)
+
 	// Note
 	err = outputData(userNote)
 	if err != nil {
 		return
+	}
+}
+
+func printSomething(value interface{}) {
+	fmt.Println(value)
+
+	switch v := value.(type) {
+	case int:
+		fmt.Println("Ini integer:", v)
+	case string:
+		fmt.Println("Ini string:", v)
+	default:
+		fmt.Println("Tipe lain:", v)
 	}
 }
 
