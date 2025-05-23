@@ -32,12 +32,13 @@ func (note Note) Save() error {
 	return os.WriteFile(fileName, json, 0644)
 }
 
-func New(title, content string) (Note, error) {
+// contoh pakai pointer
+func New(title, content string) (*Note, error) {
 	if title == "" || content == "" {
-		return Note{}, errors.New("Invalid input.")
+		return &Note{}, errors.New("invalid input")
 	}
 
-	return Note{
+	return &Note{
 		Title:     title,
 		Content:   content,
 		CreatedAt: time.Now(),

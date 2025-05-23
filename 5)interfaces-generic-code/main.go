@@ -10,6 +10,24 @@ import (
 	"example.com/note/todo"
 )
 
+type Saver interface {
+	Save() error
+}
+
+type displayer interface {
+	Display()
+}
+
+type outputtable interface {
+	Saver
+	displayer
+}
+
+// type outputtable interface {
+// 	Save() error
+// 	displayer
+// }
+
 func main() {
 	title, content := getNoteData()
 	todoText := getTodoData()
@@ -29,26 +47,50 @@ func main() {
 	}
 
 	// Todo
-	todo.Display()
-	err = todo.Save()
-
+	err = outputData(todo)
 	if err != nil {
-		fmt.Println("Saving the todo failed.")
 		return
 	}
-
-	fmt.Println("Saving the todo succeeded!")
 
 	// Note
-	userNote.Display()
-	err = userNote.Save()
-
+	err = outputData(userNote)
 	if err != nil {
-		fmt.Println("Saving the note failed.")
 		return
 	}
+}
 
-	fmt.Println("Saving the note succeeded!")
+func outputData(data outputtable) error {
+	data.Display()
+	return saveData(data)
+}
+
+// ada cara lain yang lebih mudah
+func saveData(data Saver) error {
+	err := data.Save()
+	fmt.Printf("Type: %T\n", data)
+
+	if err != nil {
+		switch data.(type) {
+		case *note.Note:
+			fmt.Println("Saving the note failed.")
+		case *todo.Todo:
+			fmt.Println("Saving the todo failed.")
+		default:
+			fmt.Println("Saving the data failed.")
+		}
+		return err
+	}
+
+	switch data.(type) {
+	case *note.Note:
+		fmt.Println("Saving the note succeeded!")
+	case *todo.Todo:
+		fmt.Println("Saving the todo succeeded!")
+	default:
+		fmt.Println("Saving the data succeeded!")
+	}
+
+	return nil
 }
 
 func getTodoData() string {
@@ -73,8 +115,7 @@ func getUserInput(prompt string) string {
 		return ""
 	}
 
-	text = strings.TrimSuffix(text, "\n")
-	text = strings.TrimSuffix(text, "\r")
+	text = strings.TrimSpace(text)
 
 	return text
 }
