@@ -98,3 +98,25 @@ func main() {
 go get
 
 ```
+
+## catatan structs
+
+```go
+type Note struct {
+	Title     string
+	Content   string
+	CreatedAt time.Time
+}
+
+
+// kalo huruf besa boleh di ekspos
+
+type Note struct {
+	title     string
+	content   string
+	createdAt time.Time
+}
+
+//  tidak untuk di ekspos
+
+```
