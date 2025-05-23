@@ -46,9 +46,14 @@ func main() {
 	// 	time.Now(),
 	// }
 
-	// ... do something awesome with that gathered data!
-
 	// outputUserDetails(&appUser)
+
+	admin := user.NewAdmin("text@example.com", "test123")
+
+	admin.User.OutputUserDetails()
+	admin.OutputUserDetails()
+	admin.ClearUserName(&userHeight)
+	admin.OutputUserDetails()
 
 	appUser.OutputUserDetails()
 	appUser.ClearUserName(&userHeight)
