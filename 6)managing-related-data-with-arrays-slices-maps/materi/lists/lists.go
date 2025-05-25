@@ -1,4 +1,4 @@
-package main
+package lists
 
 import "fmt"
 
@@ -19,6 +19,15 @@ func main() {
 	prices = prices[1:]
 
 	fmt.Println("hapus nilai di array:", updatedPrices, prices)
+
+	// new section
+	updatedWithMutiplePrices := append(prices, 5.88, 5.22, 123.2, 512.341)
+	fmt.Println("tambah banyak data ke array:", updatedWithMutiplePrices)
+
+	discountPrices := []float64{101.99, 20.3, 33.3, 44.6}
+	newPricesArr := append(prices, discountPrices...)
+	fmt.Println(" data ke array:", newPricesArr)
+
 }
 
 // func main() {
