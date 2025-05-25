@@ -3,21 +3,21 @@ package main
 import "fmt"
 
 func main() {
-	numbers := []int{1, 2, 3}
+	numbers := []int{1, 10, 15}
+	sum := sumup(3, 10, 15)
+	sum2 := sumup(0, numbers...)
 
-	transformed := transformNumbers(&numbers, func(number int) int {
-		return number * 2
-	})
+	fmt.Println(sum)
+	fmt.Println(sum2)
 
-	fmt.Println(transformed)
 }
 
-func transformNumbers(numbers *[]int, transform func(int) int) []int {
-	dNumbers := []int{}
+func sumup(startingValue int, numbers ...int) int {
+	sum := startingValue
 
-	for _, val := range *numbers {
-		dNumbers = append(dNumbers, transform(val))
+	for _, val := range numbers {
+		sum += val
 	}
 
-	return dNumbers
+	return sum
 }
