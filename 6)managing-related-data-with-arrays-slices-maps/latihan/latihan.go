@@ -19,14 +19,14 @@ func main() {
 
 	// 3
 	fmt.Println(len(firstHobby), cap(firstHobby))
-	usingHobbies := hobbies[0:2]
+	mainHobbies := hobbies[0:2]
 	usingFirstHobbies := firstHobby[0:2]
 
-	fmt.Println(usingHobbies, usingFirstHobbies)
+	fmt.Println(mainHobbies, usingFirstHobbies)
 
 	// 4
-	usingHobbies = hobbies[1:3]
-	fmt.Println(usingHobbies)
+	mainHobbies = mainHobbies[1:3]
+	fmt.Println(mainHobbies)
 
 	// 5
 	var courseGoal []string = []string{"Mastering Go-lang", "Can creat rest-api"}
@@ -44,7 +44,7 @@ func main() {
 	type product struct {
 		id    int
 		title string
-		price int
+		price float64
 	}
 
 	products := []product{{id: 1, title: "Buku", price: 3000}, {id: 2, title: "Pensil", price: 1500}}
@@ -53,6 +53,31 @@ func main() {
 
 	products = append(products, product{id: 3, title: "Penghapus", price: 500})
 	fmt.Println(products)
+
+	products2 := []product{
+		{
+			1,
+			"A First Product",
+			12.99,
+		},
+		{
+			2,
+			"A Second Product",
+			129.99,
+		},
+	}
+
+	fmt.Println(products2)
+
+	newProduct := product{
+		3,
+		"A Third Product",
+		15.99,
+	}
+
+	products2 = append(products2, newProduct)
+
+	fmt.Println(products2)
 }
 
 // func main2() {
