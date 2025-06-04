@@ -1,8 +1,9 @@
 POST http://localhost:8080/events
 Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3QyQGV4YW1wbGUuY29tIiwiZXhwIjoxNzQ4OTk4NTAyLCJ1c2VySWQiOjJ9.YP29Qa_2eDTEJScinXzF9dYNBqjF-Hjvmtt_Sm3nmjA
 
 {
-  "name":"Test Event",
+  "name":"Test a second Event",
   "description":"A test event",
   "location":"A test location",
   "dateTime":"2025-01-01T15:30:00.000Z"
